@@ -1,6 +1,6 @@
 # AI Source Verification
 
-$(System.Collections.Hashtable.Name) is a public seed repository for source verification for AI-mediated work.
+AI Source Verification is a public seed repository for source verification for AI-mediated work.
 
 ## Purpose
 
