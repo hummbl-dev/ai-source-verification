@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "ai-source-verification/v0.1",
+  "packetStatus": "candidate",
+  "verificationManifest": {
+    "id": "aisv:fixture:invalid-001",
+    "title": "Invalid v0.1 fixture (missing verificationContract)",
+    "version": "1.0.0",
+    "scope": "Fixture missing a required top-level field to exercise schema rejection."
+  },
+  "authority": {
+    "producer": "agent:fixture@example.org",
+    "basis": "Synthetic fixture for schema validation."
+  },
+  "receiptRequirements": {
+    "reviewer": "human:reviewer@example.org",
+    "requiredSignoff": true,
+    "receiptFormat": "markdown"
+  }
+}

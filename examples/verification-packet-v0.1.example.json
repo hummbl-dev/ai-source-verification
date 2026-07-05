@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "ai-source-verification/v0.1",
+  "packetStatus": "candidate",
+  "verificationManifest": {
+    "id": "aisv:example:research-brief-2025-01",
+    "title": "AI-assisted research brief on content provenance",
+    "version": "1.0.0",
+    "scope": "Full document, single author, single review pass."
+  },
+  "authority": {
+    "producer": "agent:devin@example.org",
+    "basis": "Direct production from cited sources with human review pending."
+  },
+  "verificationContract": {
+    "sourceType": "ai-assisted",
+    "provenanceChain": [
+      {
+        "step": 0,
+        "actor": "human:author@example.org",
+        "description": "Author provided source list and outline."
+      },
+      {
+        "step": 1,
+        "actor": "agent:devin@example.org",
+        "description": "Agent drafted brief from provided sources."
+      },
+      {
+        "step": 2,
+        "actor": "human:reviewer@example.org",
+        "description": "Reviewer pending signoff on draft."
+      }
+    ],
+    "attestationSpec": {
+      "format": "plain-claims",
+      "claims": [
+        {
+          "name": "sources-cited",
+          "value": "all cited sources are public and linked"
+        },
+        {
+          "name": "ai-contribution",
+          "value": "drafting and summarization only; no factual claims invented"
+        }
+      ]
+    },
+    "trustPolicy": {
+      "level": "low",
+      "rules": [
+        "Every factual claim must trace to a cited public source.",
+        "AI contribution must be disclosed in attestationSpec.claims."
+      ]
+    },
+    "verificationStatus": "pending"
+  },
+  "receiptRequirements": {
+    "reviewer": "human:reviewer@example.org",
+    "requiredSignoff": true,
+    "receiptFormat": "markdown",
+    "receiptRef": "receipts/ai-source-verification-v0.1-packet-receipt.md"
+  }
+}
