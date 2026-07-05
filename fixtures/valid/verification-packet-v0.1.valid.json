@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "ai-source-verification/v0.1",
+  "packetStatus": "candidate",
+  "verificationManifest": {
+    "id": "aisv:fixture:valid-001",
+    "title": "Valid v0.1 fixture",
+    "version": "1.0.0",
+    "scope": "Fixture covering all required fields with well-formed values."
+  },
+  "authority": {
+    "producer": "agent:fixture@example.org",
+    "basis": "Synthetic fixture for schema validation."
+  },
+  "verificationContract": {
+    "sourceType": "ai-assisted",
+    "provenanceChain": [
+      {
+        "step": 0,
+        "actor": "human:fixture-author@example.org",
+        "description": "Fixture author defined scope."
+      },
+      {
+        "step": 1,
+        "actor": "agent:fixture@example.org",
+        "description": "Agent produced candidate packet."
+      }
+    ],
+    "attestationSpec": {
+      "format": "plain-claims",
+      "claims": [
+        {
+          "name": "fixture-purpose",
+          "value": "demonstrate a valid v0.1 packet"
+        }
+      ]
+    },
+    "trustPolicy": {
+      "level": "low",
+      "rules": [
+        "Fixture must validate against the v0.1 schema."
+      ]
+    },
+    "verificationStatus": "pending"
+  },
+  "receiptRequirements": {
+    "reviewer": "human:reviewer@example.org",
+    "requiredSignoff": true,
+    "receiptFormat": "markdown"
+  }
+}

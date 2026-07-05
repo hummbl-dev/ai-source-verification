@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hummbl-dev/ai-source-verification/schemas/ai-source-verification-v0.1.json",
+  "title": "AI Source Verification Packet v0.1",
+  "description": "Candidate schema for a reviewable, testable, agent-operable verification packet for AI-mediated work. Non-canon.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packetStatus",
+    "verificationManifest",
+    "authority",
+    "verificationContract",
+    "receiptRequirements"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "ai-source-verification/v0.1",
+      "description": "Identifies the schema this packet conforms to."
+    },
+    "packetStatus": {
+      "type": "string",
+      "enum": ["draft", "candidate", "reviewed", "rejected"],
+      "description": "Lifecycle state of the packet. Only 'reviewed' may be treated as reviewed."
+    },
+    "verificationManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "version", "scope"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable identifier for the work being verified."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable title of the work."
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Version label of the work this packet covers."
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What the packet covers (e.g. full document, section, asset)."
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["producer", "basis"],
+      "properties": {
+        "producer": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identity of the actor that produced the packet."
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Basis on which the producer asserts the packet (e.g. direct observation, tool output)."
+        }
+      }
+    },
+    "verificationContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceType",
+        "provenanceChain",
+        "attestationSpec",
+        "trustPolicy",
+        "verificationStatus"
+      ],
+      "properties": {
+        "sourceType": {
+          "type": "string",
+          "enum": ["human", "ai-assisted", "ai-generated", "synthetic", "captured", "mixed"],
+          "description": "The nature of the work's source."
+        },
+        "provenanceChain": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Ordered list of provenance steps from origin to current state.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["step", "actor", "description"],
+            "properties": {
+              "step": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "actor": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "attestationSpec": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["format", "claims"],
+          "properties": {
+            "format": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Format of the attestation (e.g. c2pa-manifest, in-toto-statement, plain-claims)."
+            },
+            "claims": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["name", "value"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "trustPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["level", "rules"],
+          "properties": {
+            "level": {
+              "type": "string",
+              "enum": ["none", "low", "medium", "high"],
+              "description": "Graduated trust level. v0.1 does not normatively define levels; this is a placeholder for later versions."
+            },
+            "rules": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "verificationStatus": {
+          "type": "string",
+          "enum": ["unverified", "pending", "verified", "failed"],
+          "description": "Outcome of verification against the trust policy."
+        }
+      }
+    },
+    "receiptRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer", "requiredSignoff", "receiptFormat"],
+      "properties": {
+        "reviewer": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identity required to sign off, or 'unassigned'."
+        },
+        "requiredSignoff": {
+          "type": "boolean",
+          "description": "Whether a reviewer signoff is required before the packet may be treated as reviewed."
+        },
+        "receiptFormat": {
+          "type": "string",
+          "enum": ["markdown", "json", "sigstore", "opentimestamps"],
+          "description": "Expected format of the receipt."
+        },
+        "receiptRef": {
+          "type": "string",
+          "description": "Optional reference to an existing receipt (e.g. transparency log index)."
+        }
+      }
+    }
+  }
+}
