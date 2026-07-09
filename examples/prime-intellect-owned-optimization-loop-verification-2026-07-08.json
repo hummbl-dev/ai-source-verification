@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "ai-source-verification/v0.1",
+  "packetStatus": "candidate",
+  "verificationManifest": {
+    "id": "aisv:prime-intellect:owned-optimization-loop:2026-07-08",
+    "title": "Prime Intellect Series A and RL stack source-verification packet",
+    "version": "1.0.0",
+    "scope": "Single candidate verification packet for Prime Intellect’s July 8, 2026 Series A and related technical artifact claims."
+  },
+  "authority": {
+    "producer": "hummbl-dev/ai-source-verification",
+    "basis": "Manual capture from public sources plus human/agent review of claim posture."
+  },
+  "verificationContract": {
+    "sourceType": "ai-assisted",
+    "provenanceChain": [
+      {
+        "step": 0,
+        "actor": "human:operator@hummbl",
+        "description": "Primary source set selected and posture requirements defined."
+      },
+      {
+        "step": 1,
+        "actor": "agent:codex",
+        "description": "Captured public Prime Intellect and press source receipts; preserved exact claim boundaries."
+      },
+      {
+        "step": 2,
+        "actor": "human:operator@hummbl",
+        "description": "Reviewed for non-canon posture and DO_NOT_ADOPT_YET constraints."
+      }
+    ],
+    "attestationSpec": {
+      "format": "plain-claims",
+      "claims": [
+        {
+          "name": "source-boundary",
+          "value": "Funding and stack claims preserved as SOURCE_CLAIM; press framing preserved as EXTERNALLY_REPORTED."
+        },
+        {
+          "name": "adoption-scope",
+          "value": "No Prime Intellect, HUMMBL, BaseN, or Ownward canonization is performed in this packet."
+        },
+        {
+          "name": "verification-status",
+          "value": "Performance and implementation claims are not independently validated in-repo."
+        },
+        {
+          "name": "local-audit",
+          "value": "4090/3090 and local feasibility items remain LOCAL_AUDIT_REQUIRED."
+        }
+      ]
+    },
+    "trustPolicy": {
+      "level": "low",
+      "rules": [
+        "Every claim mapped to this packet must cite an explicit source URL.",
+        "Claims derived from secondary interpretation must be labeled HUMMBL_INTERPRETATION.",
+        "No operational dependency is adopted from this packet."
+      ]
+    },
+    "verificationStatus": "pending"
+  },
+  "receiptRequirements": {
+    "reviewer": "human:reviewer@example.org",
+    "requiredSignoff": true,
+    "receiptFormat": "markdown",
+    "receiptRef": "receipts/prime-intellect-owned-optimization-loop-2026-07-08-receipt.md"
+  }
+}
